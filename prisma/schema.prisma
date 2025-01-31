@@ -1,0 +1,36 @@
+// prisma/schema.prisma
+
+model Tool {
+  id            String    @id @default(cuid())
+  name          String
+  description   String
+  category      String
+  pricing       String
+  features      String[]
+  useCases      String[]  // Added field
+  strengths     String[]  // Added field
+  limitations   String[]  // Added field
+  website       String
+  apiAvailable  Boolean
+  apiPricing    String?
+  imageUrl      String?
+  rating        Float     @default(0)
+  reviewCount   Int       @default(0)
+  prompts       Prompt[]
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+}
+model Prompt {
+  id           String   @id @default(cuid())
+  title        String
+  content      String
+  tool         String
+  category     String
+  description  String?
+  votes        Int      @default(0)
+  comments     Int      @default(0)
+  effectiveness Float   @default(0)
+  author       String
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
